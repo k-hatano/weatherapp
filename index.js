@@ -76,7 +76,7 @@ searchForm.addEventListener('submit', e => {
     console.log(citySearched);
     searchForm.reset();
 
-    requestCity(citySearched)
+    requestCity(citySearched, window.location.href.indexOf("https://") == 0)
         .then((data) => {
             updateWeatherApp(data);
         })
@@ -90,7 +90,7 @@ const url = new URL(window.location.href);
 const params = url.searchParams;
 const city = params.get('city');
 if (city != undefined) {
-    requestCity(city)
+    requestCity(city, window.location.href.indexOf("https://") == 0)
     .then(data => updateWeatherApp(data))
     .catch(error => console.log(error));
 }
