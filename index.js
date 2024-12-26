@@ -85,3 +85,12 @@ searchForm.addEventListener('submit', e => {
 
 
 })
+
+const url = new URL(window.location.href);
+const params = url.searchParams;
+const city = params.get('city');
+if (city != undefined) {
+    requestCity(city)
+    .then(data => updateWeatherApp(data))
+    .catch(error => console.log(error));
+}
